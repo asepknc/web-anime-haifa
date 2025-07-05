@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AnimeFlix - Nonton Anime Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff5e57;
+      --secondary: #3d3d3d;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .anime-card {
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .anime-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 94, 87, 0.3);
+    }
+
+    .genre-tag:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .active-genre {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .loading-spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary);
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="bg-gray-900 shadow-lg fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center space-x-4">
+        <a href="#" class="flex items-center space-x-2">
+          <i class="fas fa-play-circle text-red-500 text-2xl"></i>
+          <span class="text-white font-bold text-xl">AnimeFlix</span>
+        </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#" class="text-white hover:text-red-500">Home</a>
+        <a href="#trending" class="text-white hover:text-red-500">Trending</a>
+        <a href="#genres" class="text-white hover:text-red-500">Genres</a>
+        <a href="#watchlist" class="text-white hover:text-red-500">Watch List</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <input type="text" placeholder="Search..." class="bg-gray-800 text-white px-4 py-2 rounded-full hidden md:block"/>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+          <i class="fas fa-user mr-2"></i>Login
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="pt-24 pb-16 px-4 bg-gradient-to-b from-gray-900 to-gray-800">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+    <div class="md:w-1/2 mb-8 md:mb-0">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Watch <span class="text-red-500">Anime</span> Anytime</h1>
+      <p class="text-gray-300 mb-6 text-lg">Stream anime in HD with subtitles. Updated daily!</p>
+      <div class="flex space-x-4">
+        <button class="bg-red-500 text-white px-6 py-3 rounded-md hover:bg-red-600">
+          <i class="fas fa-play mr-2"></i> Watch Now
+        </button>
+        <button class="bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-600">
+          <i class="fas fa-plus mr-2"></i> Add to List
+        </button>
+      </div>
+    </div>
+    <div class="md:w-1/2">
+      <div class="video-container rounded-lg shadow-2xl">
+        <!-- <iframe src="https://www.youtube.com/embed/CpU6YlisFQ8" allowfullscreen></iframe> -->
+         <video src="/assets/preview.mp4" controls loop></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trending Anime -->
+<section id="trending" class="py-12 px-4 bg-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6">Trending <span class="text-red-500">This Week</span></h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <!-- Anime Cards -->
+      <div class="anime-card bg-gray-900 rounded-lg overflow-hidden">
+        <img src="https://awsimages.detik.net.id/community/media/visual/2024/09/17/anime-solo-leveling-season-2.webp" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="text-white font-semibold text-lg">Solo Leveling</h3>
+          <p class="text-gray-400">Genre: Action, Fantasy</p>
+          <p class="text-gray-400">Episodes: 12</p>
+          <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2">Watch Now</button>
+        </div>
+      </div>
+      <div class="anime-card bg-gray-900 rounded-lg overflow-hidden">
+        <img src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2025/06/02/4283022946.jpg" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="text-white font-semibold text-lg">Kaiju No.8</h3>
+          <p class="text-gray-400">Genre: Sci-fi, Shounen</p>
+          <p class="text-gray-400">Episodes: 12</p>
+          <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2">Watch Now</button>
+        </div>
+      </div>
+      <div class="anime-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT10RyUtE3xfyV5-wErPV6O-Y83gPnFd5IRJA&s" alt="Anime 3" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-white">Kimetsu no yaiba</h3>
+            <p class="text-gray-400">Genre: Dark Fantasy,Advanture</p>
+            <p class="text-gray-400">Episodes: 26</p>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition">
+                Watch Now
+            </button>
+        </div>
+     </div>
+     <div class="anime-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfwP7usRIxfQNj841lU1eALx_vFTlD8ZN-fA&s" alt="Anime 4" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-white">My hero academia</h3>
+            <p class="text-gray-400">Genre: Superhero,Action,Shounen</p>
+            <p class="text-gray-400">Episodes: 13</p>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition">
+                Watch Now
+            </button>
+        </div>
+    </div>
+      <div class="anime-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <img src="https://m.media-amazon.com/images/M/MV5BM2MzMGRlN2QtM2FhMS00Y2FhLWE4MTEtMGNiZTU5YTdiY2JiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Anime 4" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-white">Jibaku shounen hanako-kun</h3>
+            <p class="text-gray-400">Genre: Mystery,Fantasy,Shounen, Supernatural</p>
+            <p class="text-gray-400">Episodes: 12</p>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition">
+                Watch Now
+            </button>
+        </div>
+    </div>
+
+    <div class="anime-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8AWKTlZwvE5A45nJb2N5gwBVlZdbs_qKI5g&s" alt="Anime 4" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-white">Kimini todoke</h3>
+            <p class="text-gray-400">Genre: Romance,Drama,Comedy</p>
+            <p class="text-gray-400">Episodes: 25</p>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition">
+                Watch Now
+            </button>
+        </div>
+    </div>
+    <div class="anime-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <img src="https://m.media-amazon.com/images/M/MV5BYjQ2NWQ0Y2UtYzU5Yi00ZjI2LWE2MDEtMjRhZDNlZWJhOWQ3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Anime 4" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-white">Kamisama kiss</h3>
+            <p class="text-gray-400">Genre: Romance,Comedy,Shoujo,Fantasy</p>
+            <p class="text-gray-400">Episodes: 13</p>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition">
+                Watch Now
+            </button>
+        </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Genres -->
+<section id="genres" class="py-12 px-4 bg-gray-900">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6">Browse by <span class="text-red-500">Genres</span></h2>
+    <div class="flex flex-wrap gap-3 mb-8">
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Action</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Adventure</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Fantasy</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Romance</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Comedy</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Supernatural</button>
+      <button class="genre-tag bg-gray-800 px-4 py-2 rounded-md">Shounen</button>
+    </div>
+    <div id="genre-results" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <!-- Filtered genre anime cards will go here -->
+    </div>
+
+  </div>
+</section>
+
+<!-- Watchlist -->
+<section id="watchlist" class="py-12 px-4 bg-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-bold">Your <span class="text-red-500">Watch List</span></h2>
+      <button id="clear-watchlist" class="text-red-400 hover:text-white">
+        <i class="fas fa-trash"></i> Clear All
+      </button>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" id="watchlist-anime">
+      <!-- Watchlist content inserted here -->
+    </div>
+    <p id="empty-watchlist" class="text-gray-400 mt-4 hidden">Your watchlist is empty.</p>
+  </div>
+</section>
+
+
+
+<!-- Anime Modal -->
+<div id="anime-modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden flex items-center justify-center p-4">
+  <div class="bg-gray-900 rounded-lg p-6 w-full max-w-xl relative">
+    <button id="close-modal" class="absolute top-2 right-2 text-white text-2xl">&times;</button>
+    <img id="modal-anime-cover" src="" class="w-full h-64 object-cover rounded mb-4">
+    <h2 id="modal-anime-title" class="text-2xl font-bold text-white mb-2">Anime Title</h2>
+    <p class="text-gray-400 mb-4">Episodes: <span id="modal-anime-episodes">12</span></p>
+    <div class="flex flex-wrap gap-2 mb-4" id="modal-anime-genres"></div>
+    <button id="add-to-watchlist" class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
+      <i class="fas fa-plus"></i> Add to Watchlist
+    </button>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div id="video-modal" class="fixed inset-0 z-50 bg-black bg-opacity-90 hidden flex items-center justify-center p-4">
+  <div class="bg-gray-900 rounded-lg p-6 w-full max-w-4xl relative">
+    <button id="close-video" class="absolute top-2 right-2 text-white text-2xl">&times;</button>
+    <div class="relative w-full h-0 pb-[56.25%]">
+      <iframe id="video-frame" class="absolute top-0 left-0 w-full h-full rounded" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id="video-loading" class="flex justify-center items-center mt-4 hidden">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>
+<footer style="padding: 15px;">
+  <center>
+    <p>created by:Haifa©️2025</p>
+  </center>
+</footer >
+<!-- JavaScript -->
+<script>
+  // JavaScript code from earlier response goes here
+</script>
+<script src="script.js"></script>
+</body>
+</html>
